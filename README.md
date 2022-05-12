@@ -60,3 +60,38 @@ No modules.
 | <a name="output_secondary_send_and_listen_connection_string"></a> [secondary\_send\_and\_listen\_connection\_string](#output\_secondary\_send\_and\_listen\_connection\_string) | The Secondary Connection String for the ServiceBus Topic authorization Rule. |
 | <a name="output_secondary_send_and_listen_shared_access_key"></a> [secondary\_send\_and\_listen\_shared\_access\_key](#output\_secondary\_send\_and\_listen\_shared\_access\_key) | The Secondary Key for the ServiceBus Topic authorization Rule. |
 <!-- END_TF_DOCS -->
+
+## How to use
+
+```
+module "service-bus-topic" {
+  source  = "spy86/service-bus-topic/azure"
+  version = "1.0.1"
+  resource_group_name = "weu-test-rg"
+  servicebus_namespace_name = "dev-c803dd50-weu-sb-ns"
+  servicebus_topic_name = "topic01"
+  environment = "dev"
+  region = "weu"
+  resource_group_location = "West Europe"
+  servicebus_topic_authorization_rule_listen = "true"
+  servicebus_topic_authorization_rule_manage = "false"
+  servicebus_topic_authorization_rule_send = "true"
+  servicebus_topic_auto_delete_on_idle = "P10675199DT2H48M5.4775807S"
+  servicebus_topic_default_message_ttl = "P10675199DT2H48M5.4775807S"
+  servicebus_topic_duplicate_detection_history_time_window = "PT10M"
+  servicebus_topic_enable_batched_operations = "false"
+  servicebus_topic_enable_express = "false"
+  servicebus_topic_enable_partitioning = "false"
+  servicebus_topic_max_size_in_megabytes = "1024"
+  servicebus_topic_requires_duplicate_detection = "false"
+  servicebus_topic_support_ordering = "false"
+
+  default_tags = {
+      Administrator = "Someone"
+      Department = "IT"
+      CostCentre = "ABC123"
+      ContactPerson = "Someone@example.com"
+      ManagedByTerraform = "True"
+}
+}
+```
